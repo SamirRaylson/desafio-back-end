@@ -1,30 +1,21 @@
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { db } from '../services/firebaseConfig';
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-
-import { firebaseConfig } from '../services/firebaseConfig';
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
-
-const db = firebase.firestore();
-
-export async function addClient(clientData) {
+export const addClient = async (clientData) => {
   try {
-    const response = await db.collection('clients').add(clientData);
-    console.log('Client added with ID: ', response.id);
-    return response.id;
+    const docRef = await addDoc(collection(db, 'clients'), clientData);
+    console.log('Client added with ID: ', docRef.id);
+    return docRef.id;
   } catch (error) {
     console.error('Error adding client: ', error);
     throw error;
   }
-}
+};
 
-export async function getClients() {
+export const getClients = async () => {
   try {
-    const response = await db.collection('clients').get();
-    const clients = response.docs.map((doc) => ({
+    const clientsSnapshot = await getDocs(collection(db, 'clients'));
+    const clients = clientsSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
@@ -33,24 +24,26 @@ export async function getClients() {
     console.error('Error getting clients: ', error);
     throw error;
   }
-}
+};
 
-export async function updateClient(clientId, newData) {
+export const updateClient = async (clientId, newData) => {
   try {
-    await db.collection('clients').doc(clientId).set(newData, { merge: true });
+    const clientDocRef = doc(db, 'clients', clientId);
+    await updateDoc(clientDocRef, newData);
     console.log('Client updated successfully');
   } catch (error) {
     console.error('Error updating client: ', error);
     throw error;
   }
-}
+};
 
-export async function deleteClient(clientId) {
+export const deleteClient = async (clientId) => {
   try {
-    await db.collection('clients').doc(clientId).delete();
+    const clientDocRef = doc(db, 'clients', clientId);
+    await deleteDoc(clientDocRef);
     console.log('Client deleted successfully');
   } catch (error) {
     console.error('Error deleting client: ', error);
     throw error;
   }
-}
+};
