@@ -1,3 +1,18 @@
+/**
+ * Nome do arquivo: firebaseConfig2024
+ * Data de criação: 09/05/2024
+ * Autor: Samir Raylson
+ * Matrícula: 01575824
+ *
+ * Descrição:
+ * Este código configura e inicializa uma conexão com o Firebase usando as credenciais fornecidas no firebaseConfig. Em seguida, 
+ * obtém uma instância do Firestore para acessar o banco de dados. As configurações e instâncias são exportadas para serem usadas em outras
+ * partes do aplicativo.
+ *
+ * Este script é parte o curso de ADS.
+ */
+
+
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 

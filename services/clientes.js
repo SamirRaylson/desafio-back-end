@@ -1,3 +1,17 @@
+/**
+ * Nome do arquivo: clientes.js
+ * Data de criação: 09/05/2024
+ * Autor: Samir Raylson
+ * Matrícula: 01575824
+ *
+ * Descrição:
+ * Este código define funções para interagir com uma coleção de clientes em um banco de dados Firestore do Firebase. As funções incluem 
+ * adicionar um cliente, obter todos os clientes, atualizar um cliente existente e excluir um cliente. As operações são realizadas usando 
+ * métodos fornecidos pela API do Firestore do Firebase.
+ *
+ * Este script é parte o curso de ADS.
+ */
+
 import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../services/firebaseConfig';
 
