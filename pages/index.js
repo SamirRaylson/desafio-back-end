@@ -206,7 +206,7 @@ const ClientList = ({ clients, onEdit, onDelete }) => {
               onClick={() => handleShowModal(client)}
               className="p-2 ml-4 bg-rose-400 text-white rounded-md hover:bg-rose-500"
             >
-              Mais informações
+              Detalhes
             </button>
             <button
               style={{ marginRight: "5px" }}
